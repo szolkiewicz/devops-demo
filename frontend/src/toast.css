@@ -1,0 +1,42 @@
+/* Container for the toast, positions the toast at the bottom of the screen */
+.toast-container {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    /* Make sure the toast appears above other content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* visibility: hidden; */
+    /* opacity: 0; */
+    /* Start fully transparent */
+    margin-bottom: 1vmin;
+    /* Spacing from the bottom */
+    padding: 1vmin;
+    /* padding: calc(10px + 0.5vmin) calc(10px + 0.5vmin); */
+    background-color: var(--bg-color);
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgb(255, 128, 0);
+    transition: visibility 0s, opacity 0.5s linear;
+}
+
+/* Animation to show the toast */
+.toast-show {
+    visibility: visible;
+    opacity: 1;
+    animation: slide-up 0.5s ease-out;
+}
+
+/* Keyframes for the slide-up animation */
+@keyframes slide-up {
+    from {
+        transform: translateX(-50%) translateY(100%);
+    }
+
+    to {
+        transform: translateX(-50%) translateY(0);
+    }
+}
