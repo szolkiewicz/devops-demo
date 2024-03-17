@@ -33,9 +33,10 @@
   padding: calc(1px + 0.5vmin);
   font-size: calc(7px + 2vmin);
   margin: 2px;
+  text-decoration: none;
 }
 
-.App-button:hover {
+.App-button:hover, .App-mini-button:hover {
   background-color: var(--active-bg-color);
 }
 
@@ -69,10 +70,24 @@ dialog {
   }
 }
 
+.App-mini-button {
+  border-radius: 10px;
+  background-color: var(--bg-color);
+  padding: calc(1px + 0.5vmin);
+  margin: 2px;
+  text-decoration: none;
+
+  font-size: calc(5px + 1vmin);
+  border: 1px solid var(--border-color);
+}
+
 .App-input {
   padding: 2px;
   font-size: calc(5px + 1vmin);
   color: black;
+}
+p, li{
+  font-size: calc(5px + 1vmin);
 }
 /* @keyframes App-logo-spin {
   from {
@@ -82,3 +97,32 @@ dialog {
     transform: rotate(360deg);
   }
 } */
+
+.crud-view {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-card {
+  display: flex;
+  flex-direction: row;
+  width: 45%;
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  background-color: var(--bg-color);
+  margin: 1vmin;
+  padding: 1px;
+  img {
+    border-radius: 10px;
+  }
+  .column-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .row-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+}

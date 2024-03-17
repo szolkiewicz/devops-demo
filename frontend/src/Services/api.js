@@ -5,7 +5,7 @@ const API_URL = "http://localhost:5000";
 
 export const isAPIup = async () => {
   try {
-    const response = await axios.get(`${API_URL}/up`, {
+    await axios.get(`${API_URL}/up`, {
       timeout: 2000
     });
     return true;
@@ -18,4 +18,41 @@ export const isAPIup = async () => {
     }
     return false;
   }
+};
+
+
+export const tryLogin = async (email,password) => {
+  const loginData = {
+    email: email,
+    password: password
+  };
+
+  try {
+    const response = await axios.post(`${API_URL}/login`, loginData);
+    return ["Login successfull", response.data];
+
+  } catch (error) {
+    if(error?.response?.status === 401)
+      return ["Incorrect credentials", null];
+    else
+      return ["API unavailable", null];
+  }
+};
+
+export const getAllUsers = async (token) => {
+
+  try {
+    const response = await axios.get(`${API_URL}/users`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    return response.data;
+  } catch (error) {
+    if(error?.response?.status === 403)
+      throw new Error("Access forbidden");
+    else
+      throw new Error("API unavailable");
+  }
+
 };

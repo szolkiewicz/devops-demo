@@ -1,13 +1,25 @@
 import { useState } from "react";
-
+import { tryLogin } from "../Services/api";
+import useLocalStorage from "../Hooks/useLocalStorage";
 
 const LoginModal = ({loginModalRef}) => {
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [, setUser] = useLocalStorage("user", null);
 
-  const tryLogin = () => {
-    loginModalRef.current.close();
+  const handleLogin = () => {
+    tryLogin(email, password).then(([msg,userData])  => {
+      if(userData) {
+        setUser(userData);
+        setError("");
+        loginModalRef.current.close();
+      } else {
+        setError(msg);
+        setUser(null);
+      }
+    })
   }
 
   return (
@@ -25,9 +37,10 @@ const LoginModal = ({loginModalRef}) => {
           className="App-input"
           type="password"
           />
+          {!!error && <p>{error}</p>}
           <div>
-        <button onClick={tryLogin} className="App-button">Login</button>
-        <button onClick={tryLogin} className="App-button">Cancel</button>
+        <button onClick={handleLogin} className="App-button">Login</button>
+        <button onClick={handleLogin} className="App-button">Cancel</button>
         </div>
       </dialog>
   )
