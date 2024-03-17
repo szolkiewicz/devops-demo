@@ -93,7 +93,7 @@ def delete(user_id):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0")
 
 # Test:
 # curl -X POST -H "Content-Type: application/json" -d '{"email":"admin", "password":"admin"}' http://localhost:5000/login

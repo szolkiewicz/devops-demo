@@ -1,5 +1,7 @@
 import axios from "axios";
 
+axios.defaults.timeout = 2000;
+
 const API_URL = "http://localhost:5000";
 
 

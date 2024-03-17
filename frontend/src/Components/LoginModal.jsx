@@ -40,7 +40,7 @@ const LoginModal = ({loginModalRef}) => {
           {!!error && <p>{error}</p>}
           <div>
         <button onClick={handleLogin} className="App-button">Login</button>
-        <button onClick={handleLogin} className="App-button">Cancel</button>
+        <button onClick={() => loginModalRef.current.close()} className="App-button">Cancel</button>
         </div>
       </dialog>
   )
