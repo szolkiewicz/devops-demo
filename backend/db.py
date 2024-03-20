@@ -2,8 +2,10 @@ from pymongo import MongoClient, ReturnDocument
 from bson.objectid import ObjectId
 import os
 
+mongodb_user = os.environ.get("MONGODB_USERNAME", "user")
+mongodb_password = os.environ.get("MONGODB_PASSWORD", "password")
 mongodb_host = os.environ.get("MONGODB_HOST", "localhost")
-connection_string = f"mongodb://root:example@{mongodb_host}"
+connection_string = f"mongodb://{mongodb_user}:{mongodb_password}@{mongodb_host}"
 client = MongoClient(connection_string)
 print(f"Connecting to DB on URL: {connection_string}")
 db = client["devops_db"]
