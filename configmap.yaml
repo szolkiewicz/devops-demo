@@ -1,0 +1,8 @@
+# configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config
+  namespace: student-259337
+data:
+  MONGODB_HOST: "mongodb-headless"
